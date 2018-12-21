@@ -22,7 +22,7 @@ namespace PnetDB_Maker_Jhlee
         string InputFile_Path = null;
 
         string OutputFile_Path1 = "\\PNet_Compoints.xlsx";
-        string OutputFile_Path2 = "\\Compoints";
+        string OutputFile_Path2 = "\\ComPoints";
         
         IXLRange ReadRange; // InputFile에서 복사한 셀 내용을 담는 컨테이너
 
@@ -52,8 +52,7 @@ namespace PnetDB_Maker_Jhlee
         string[] Compoints_ROW2 = new string[] { "PIN", "SN", "RP", "SN", "PT", "DT", "DL", "FC", "AD", "PRE", "PRS" };
         string[] Compoints_ROW3 = new string[] { "CommunicationPointItemName", "StationNum", "RodPosition", "StepNumber", "PointType", "DataType", "DataLength", "FunctionCode", "Addr", "PysicalRangeEnd", "PysicalRangeStart" };
 
-
-        uint TimeCount = 0;
+      
 
         public PnetDB_Maker()
         {
@@ -106,6 +105,7 @@ namespace PnetDB_Maker_Jhlee
             }
             Compoints_Saveas_CSV();
 
+            MessageBox.Show("Completed");
 
         }
         private void Compoints_Saveas_CSV()
@@ -596,17 +596,11 @@ namespace PnetDB_Maker_Jhlee
         private void Form1_Shown(object sender, EventArgs e)
         {
             Path = System.IO.Directory.GetCurrentDirectory();// Form이 열리자마자, 폴더 실행경로 받아오기
-
-
-
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            ++TimeCount;
-            textBox1.Text = TimeCount.ToString();
+            label1.Text = "1.Drag and Drop the MTP I/O List\r\n" + "2.Run Button Click";
 
         }
+
+      
 
       
     }
