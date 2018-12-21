@@ -14,7 +14,7 @@ using ClosedXML.Excel;
 
 namespace PnetDB_Maker_Jhlee
 {
-    public partial class Form1 : Form
+    public partial class PnetDB_Maker : Form
     {
 
         bool isFullListBox = false;// 한번 ListBox채우면 더 못채우도록
@@ -55,7 +55,7 @@ namespace PnetDB_Maker_Jhlee
 
         uint TimeCount = 0;
 
-        public Form1()
+        public PnetDB_Maker()
         {
             InitializeComponent();
         }
@@ -111,14 +111,17 @@ namespace PnetDB_Maker_Jhlee
         private void Compoints_Saveas_CSV()
         {
             Excel.Application Excel_App = new Excel.Application();
-   
 
-            for(int i=1; i<=28;++i)
+            Excel_App.DisplayAlerts = false;
+
+            for (int i=1; i<=28;++i)
             {
                 var WorkBook = Excel_App.Workbooks.Open(@Path + OutputFile_Path2 + i.ToString() + ".xlsx");
+                
                 WorkBook.SaveAs(Path + OutputFile_Path2 + i.ToString() + ".csv", Excel.XlFileFormat.xlCSV);
                 WorkBook.Close(false);
                 Excel_App.Quit();
+                System.IO.File.Delete(Path + OutputFile_Path2 + i.ToString() + ".xlsx");// Compoints 1~28 . xlsx Delete -> 휴지통에는 있음
             }
          
 
@@ -201,6 +204,8 @@ namespace PnetDB_Maker_Jhlee
                 //DO 복사 : FunctionCode 이상
               
                 Addr = 1;
+                int[]DO_Fucntion_Code=  new int[] { 1, 5, 15 };
+
 
                 while (true)
                 {
@@ -211,20 +216,23 @@ namespace PnetDB_Maker_Jhlee
                     }
                     if (DO_Sheet.Cell(Sour_Start_DO_Row, 1).Value.ToString() == pcid)
                     {
-                        Compoint_WS.Cell(Dest_Start_Row, 1).Value = DO_Sheet.Cell(Sour_Start_DO_Row, 2).Value.ToString() + ".DV";
-                        Compoint_WS.Cell(Dest_Start_Row, 2).Value = PC_Num;
-                        Compoint_WS.Cell(Dest_Start_Row, 3).Value = 0;
-                        Compoint_WS.Cell(Dest_Start_Row, 4).Value = 0;
-                        Compoint_WS.Cell(Dest_Start_Row, 5).Value = 1;
-                        Compoint_WS.Cell(Dest_Start_Row, 6).Value = 4;
-                        Compoint_WS.Cell(Dest_Start_Row, 7).Value = 2;
-                        Compoint_WS.Cell(Dest_Start_Row, 8).Value = 3; // Function Code 임시로 3으로해놓음
-                        Compoint_WS.Cell(Dest_Start_Row, 9).Value = Addr;
-                        Compoint_WS.Cell(Dest_Start_Row, 10).Value = 1;
-                        Compoint_WS.Cell(Dest_Start_Row, 11).Value = 0;
+                        for(int i= 0;i< 3;++i)
+                        {
+                            Compoint_WS.Cell(Dest_Start_Row, 1).Value = DO_Sheet.Cell(Sour_Start_DO_Row, 2).Value.ToString() + ".DV";
+                            Compoint_WS.Cell(Dest_Start_Row, 2).Value = PC_Num;
+                            Compoint_WS.Cell(Dest_Start_Row, 3).Value = 0;
+                            Compoint_WS.Cell(Dest_Start_Row, 4).Value = 0;
+                            Compoint_WS.Cell(Dest_Start_Row, 5).Value = 1;
+                            Compoint_WS.Cell(Dest_Start_Row, 6).Value = 4;
+                            Compoint_WS.Cell(Dest_Start_Row, 7).Value = 2;
+                            Compoint_WS.Cell(Dest_Start_Row, 8).Value = DO_Fucntion_Code[i]; // Function Code 임시로 3으로해놓음
+                            Compoint_WS.Cell(Dest_Start_Row, 9).Value = Addr;
+                            Compoint_WS.Cell(Dest_Start_Row, 10).Value = 1;
+                            Compoint_WS.Cell(Dest_Start_Row, 11).Value = 0;
+                            Dest_Start_Row++;
+                        }
 
-
-                        Dest_Start_Row++;
+                      
                         Sour_Start_DO_Row++;
                         Addr++;
 
@@ -276,6 +284,8 @@ namespace PnetDB_Maker_Jhlee
                 Addr = 1;
 
 
+                int[] AO_Fucntion_Code = new int[] { 3, 6, 16 };
+
                 while (true)
                 {
                     if (AO_Sheet.Cell(Sour_Start_AO_Row, 1).Value == null)
@@ -285,20 +295,23 @@ namespace PnetDB_Maker_Jhlee
                     }
                     if (AO_Sheet.Cell(Sour_Start_AO_Row, 1).Value.ToString() == pcid)
                     {
-                        Compoint_WS.Cell(Dest_Start_Row, 1).Value = AO_Sheet.Cell(Sour_Start_AO_Row, 2).Value.ToString() + ".AV";
-                        Compoint_WS.Cell(Dest_Start_Row, 2).Value = PC_Num;
-                        Compoint_WS.Cell(Dest_Start_Row, 3).Value = 0;
-                        Compoint_WS.Cell(Dest_Start_Row, 4).Value = 0;
-                        Compoint_WS.Cell(Dest_Start_Row, 5).Value = 1;
-                        Compoint_WS.Cell(Dest_Start_Row, 6).Value = 6;
-                        Compoint_WS.Cell(Dest_Start_Row, 7).Value = 2;
-                        Compoint_WS.Cell(Dest_Start_Row, 8).Value = 5;// Temp로 Function Code 5로해놓음
-                        Compoint_WS.Cell(Dest_Start_Row, 9).Value = Addr;
-                        Compoint_WS.Cell(Dest_Start_Row, 10).Value = AO_Sheet.Cell(Sour_Start_AO_Row, 9);
-                        Compoint_WS.Cell(Dest_Start_Row, 11).Value = AO_Sheet.Cell(Sour_Start_AO_Row, 10);
+                        for(int i=0; i<3;++i)
+                        {
+                            Compoint_WS.Cell(Dest_Start_Row, 1).Value = AO_Sheet.Cell(Sour_Start_AO_Row, 2).Value.ToString() + ".AV";
+                            Compoint_WS.Cell(Dest_Start_Row, 2).Value = PC_Num;
+                            Compoint_WS.Cell(Dest_Start_Row, 3).Value = 0;
+                            Compoint_WS.Cell(Dest_Start_Row, 4).Value = 0;
+                            Compoint_WS.Cell(Dest_Start_Row, 5).Value = 1;
+                            Compoint_WS.Cell(Dest_Start_Row, 6).Value = 6;
+                            Compoint_WS.Cell(Dest_Start_Row, 7).Value = 2;
+                            Compoint_WS.Cell(Dest_Start_Row, 8).Value = AO_Fucntion_Code[i];
+                            Compoint_WS.Cell(Dest_Start_Row, 9).Value = Addr;
+                            Compoint_WS.Cell(Dest_Start_Row, 10).Value = AO_Sheet.Cell(Sour_Start_AO_Row, 9);
+                            Compoint_WS.Cell(Dest_Start_Row, 11).Value = AO_Sheet.Cell(Sour_Start_AO_Row, 10);
+                            Dest_Start_Row++;
+                        }
 
-
-                        Dest_Start_Row++;
+                       
                         Sour_Start_AO_Row++;
                         Addr++;
 
