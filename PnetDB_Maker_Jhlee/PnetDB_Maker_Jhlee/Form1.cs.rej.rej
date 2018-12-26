@@ -1,0 +1,9 @@
+diff a/PnetDB_Maker_Jhlee/PnetDB_Maker_Jhlee/Form1.cs.rej b/PnetDB_Maker_Jhlee/PnetDB_Maker_Jhlee/Form1.cs.rej	(rejected hunks)
+@@ -0,6 +0,7 @@
+          bool isFullListBox = false;// 한번 ListBox채우면 더 못채우도록
+          string Path = null;
+          string InputFile_Path = null;
+++        object[,] ReadData; // 읽어온  Mtp Io 리스트
+          string OutputFile_1 = "\\PNet_Compoints.xlsx";
+          string[] Row1_Text = new string[] { "BasicSystemName", "PointName", "StationNum", "PointIndication", "CurrentValue", "Unit", "HistoryLibraryCollectionPeriod", "ProjectCalculationAttribute", "RangeUpperLimit", "RangeBottomLimit" };
+          string[] PC_ID = new string[] { "SC1P", "SC1S", "SD1P", "SD1S", "CB2P", "CB2S", "CD2P", "CD2S", "SB2P", "SB2S", "CA2P", "CA2S", "CC2P", "CC2S", "SA2P", "SA2S", "CB1P", "CB1S", "CD1P", "CD1S", "SB1P", "SB1S", "CA1P", "CA1S", "CC1P", "CC1S", "SA1P", "SA1S" };
