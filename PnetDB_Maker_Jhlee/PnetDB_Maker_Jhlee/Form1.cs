@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using Excel = Microsoft.Office.Interop.Excel;
+
 using ClosedXML.Excel;
 
 
@@ -398,8 +399,14 @@ namespace PnetDB_Maker_Jhlee
                     AI_Sheet.Cell(Dest_Row, 8).Value = 0;
 
 
+                    //J열 Actual Range 값 분리해내기
                    string[] Temp = ReadRange.Cell(Source_Row, 10).Value.ToString().Split('~');
-
+                    
+                    if(Temp.Length<2)
+                    {
+                        MessageBox.Show("Trouble occurs from Excel Row :"+Source_Row.ToString()+" Col : J ");
+                        return;
+                    }
                     AI_Sheet.Cell(Dest_Row, 9).Value = Temp[1]; 
                     AI_Sheet.Cell(Dest_Row, 10).Value = Temp[0];
                     
@@ -445,6 +452,11 @@ namespace PnetDB_Maker_Jhlee
 
                     string[] Temp = ReadRange.Cell(Source_Row, 10).Value.ToString().Split('~');
 
+                    if (Temp.Length < 2)
+                    {
+                        MessageBox.Show("Trouble occurs from Excel Row :" + Source_Row.ToString() + " Col : J ");
+                        return;
+                    }
                     AO_Sheet.Cell(Dest_Row, 9).Value = Temp[1];
                     AO_Sheet.Cell(Dest_Row, 10).Value = Temp[0];
 
