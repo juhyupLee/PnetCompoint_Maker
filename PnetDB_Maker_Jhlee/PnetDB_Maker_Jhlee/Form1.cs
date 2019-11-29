@@ -32,23 +32,23 @@ namespace PnetDB_Maker_Jhlee
         string[] DODI_ROW1 = new string[] {"BasicSystemName","PointName","StationNum","PointIndication","HistoryLibraryCollectionPeriod","ProjectCalculationAttribute"};
         string[] GWAI_ROW1 = new string[] {"BasicSystemName","PointName","StationNum","PointIndication" };
         string[] PC_ID = new string[] { "SC1P", "SC1S", "SD1P", "SD1S", "CB2P", "CB2S", "CD2P", "CD2S", "SB2P", "SB2S", "CA2P", "CA2S", "CC2P", "CC2S", "SA2P", "SA2S", "CB1P", "CB1S", "CD1P", "CD1S", "SB1P", "SB1S", "CA1P", "CA1S", "CC1P", "CC1S", "SA1P", "SA1S" };
-        string[] GWAI_NAME = new string[] { "GWAI_BUF_A1",
-                                            "GWAI_BUF_B1",
-                                            "GWAI_BUF_A2",
-                                            "GWAI_BUF_B2",
-                                            "GWAI_BUF_A3",
-                                            "GWAI_BUF_B3",
-                                            "GWAI_BUF_A4",
-                                            "GWAI_BUF_B4" };
+        string[] GWAI_NAME = new string[] { "GWAI_BUF1",
+                                            "GWAI_BUF2",
+                                            "GWAI_BUF3",
+                                            "GWAI_BUF4",
+                                            "GWAI_BUF5",
+                                            "GWAI_BUF6",
+                                            "GWAI_BUF7",
+                                            "GWAI_BUF8" };
 
-        string[] GWAI_DESCRIPTION = new string[] { "Y1 Before 800EA",
-                                                   "Y1 After 800EA",
-                                                   "Y2 Before 800EA",
-                                                   "Y2 After 800EA",
-                                                   "Y3 Before 800EA",
-                                                   "Y3 After 800EA",
-                                                   "Y4 Before 800EA",
-                                                   "Y4 After 800EA" };
+        string[] GWAI_DESCRIPTION = new string[] { "GWAI BUF1 (800EA)",
+                                                   "GWAI BUF2 (800EA)",
+                                                   "GWAI BUF3 (800EA)",
+                                                   "GWAI BUF4 (800EA)",
+                                                   "GWAI BUF5 (800EA)",
+                                                   "GWAI BUF6 (800EA)",
+                                                   "GWAI BUF7 (800EA)",
+                                                   "GWAI BUF8 (800EA)" };
         const int Compoints_ROW1_1 = 6;
         string[] Compoints_ROW2 = new string[] { "PIN", "SN", "RP", "SN", "PT", "DT", "DL", "FC", "AD", "PRE", "PRS" };
         string[] Compoints_ROW3 = new string[] { "CommunicationPointItemName", "StationNum", "RodPosition", "StepNumber", "PointType", "DataType", "DataLength", "FunctionCode", "Addr", "PysicalRangeEnd", "PysicalRangeStart" };
@@ -608,7 +608,7 @@ namespace PnetDB_Maker_Jhlee
         private void Form1_Shown(object sender, EventArgs e)
         {
             Path = System.IO.Directory.GetCurrentDirectory();// Form이 열리자마자, 폴더 실행경로 받아오기
-            label1.Text = "1.Drag and Drop the MTP I/O List\r\n" + "2.Run Button Click";
+            label1.Text = "1.Drag and Drop the MTP I/O List\r\n" + "2.Click Run Button\r\n" + "3.Wait MessageBox(written 'Completed')\r\n";
 
         }
 
